@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.14"
+    ComputedModelVersion    "1.25"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "iurisilvio"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Nov 23 02:26:23 2011"
-  RTWModifiedTimeStamp	  243915967
-  ModelVersionFormat	  "1.%<AutoIncrement:14>"
+  LastModifiedDate	  "Wed Nov 23 12:27:10 2011"
+  RTWModifiedTimeStamp	  243951339
+  ModelVersionFormat	  "1.%<AutoIncrement:25>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -51,7 +51,7 @@ Model {
   StatusBar		  on
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
-  SimulationMode	  "normal"
+  SimulationMode	  "accelerator"
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -545,8 +545,8 @@ Model {
 	PropName		"Components"
       }
       Name		      "Configuration"
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 1200, 225, 2080, 855 ] "
+      CurrentDlgPage	      "Hardware Implementation"
+      ConfigPrmDlgPosition    " [ 1882, 151, 2770, 901 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -632,6 +632,14 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+    }
+    Block {
       BlockType		      TransferFcn
       Numerator		      "[1]"
       Denominator	      "[1 2 1]"
@@ -642,7 +650,7 @@ Model {
   }
   System {
     Name		    "simulacao"
-    Location		    [2046, 612, 2700, 995]
+    Location		    [2512, 570, 3166, 953]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -656,7 +664,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    16
+    SIDHighWatermark	    18
     Block {
       BlockType		      Reference
       Name		      "PID Controller"
@@ -900,7 +908,7 @@ Model {
       Ports		      [1]
       Position		      [450, 94, 480, 126]
       Floating		      off
-      Location		      [1512, 727, 1921, 1054]
+      Location		      [1566, 644, 2065, 980]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -909,6 +917,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "10"
+      SaveToWorkspace	      on
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -952,6 +961,17 @@ Model {
       OutScaling	      "2^0"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      18
+      Ports		      [1]
+      Position		      [450, 30, 510, 60]
+      VariableName	      "Yout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      TransferFcn
@@ -1010,6 +1030,12 @@ Model {
 	}
       }
       Branch {
+	Points			[0, -65]
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
+      Branch {
+	Labels			[1, 0]
 	DstBlock		"Scope"
 	DstPort			1
       }
