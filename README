@@ -1,0 +1,1 @@
+Exemplo de otimização de um controlador PID, utilizando o `fminsearch` do MATLAB.
