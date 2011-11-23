@@ -1,6 +1,6 @@
 function [fval] = fminsearch_callback(x)
     global P I D ref % Variaveis compartilhadas com a simulação
-    global step t_max custo % Variaveis compartilhadas com o callback
+    global ts_spec overshoot_spec step t_max % Variaveis compartilhadas com o callback
 
     P = x(1);
     I = x(2);
@@ -16,6 +16,6 @@ function [fval] = fminsearch_callback(x)
     else
         ts = t(ts_index);
     end
-    fval = custo(ts, overshoot);
+    fval = abs(overshoot - overshoot_spec) + abs(ts - ts_spec);
     util = [fval overshoot ts] % Imprime alguns valores úteis
 end
