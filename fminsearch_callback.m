@@ -18,7 +18,7 @@ function [fval] = fminsearch_callback(x)
         end
     end
     
-    sim('trabalho1', 0:step:max_ts); % Realiza a simulação
+    sim('simulacao', 0:step:max_ts); % Realiza a simulação
 
     fval = custo(ts, overshoot);
     util = [fval overshoot ts P I D]; % Imprime alguns valores úteis
