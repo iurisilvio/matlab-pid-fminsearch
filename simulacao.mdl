@@ -1,12 +1,12 @@
 Model {
-  Name			  "trabalho1"
+  Name			  "simulacao"
   Version		  7.4
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.11"
+    ComputedModelVersion    "1.14"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "iurisilvio"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 22 17:32:48 2011"
-  RTWModifiedTimeStamp	  243883966
-  ModelVersionFormat	  "1.%<AutoIncrement:11>"
+  LastModifiedDate	  "Wed Nov 23 02:26:23 2011"
+  RTWModifiedTimeStamp	  243915967
+  ModelVersionFormat	  "1.%<AutoIncrement:14>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -632,14 +632,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      ToWorkspace
-      VariableName	      "simulink_output"
-      MaxDataPoints	      "1000"
-      Decimation	      "1"
-      SampleTime	      "0"
-      FixptAsFi		      off
-    }
-    Block {
       BlockType		      TransferFcn
       Numerator		      "[1]"
       Denominator	      "[1 2 1]"
@@ -649,8 +641,8 @@ Model {
     }
   }
   System {
-    Name		    "trabalho1"
-    Location		    [1845, 662, 2499, 1045]
+    Name		    "simulacao"
+    Location		    [2046, 612, 2700, 995]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -911,7 +903,7 @@ Model {
       Location		      [1512, 727, 1921, 1054]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "yonly"
+      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -962,17 +954,6 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace"
-      SID		      16
-      Ports		      [1]
-      Position		      [435, 30, 495, 60]
-      VariableName	      "erro"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Array"
-    }
-    Block {
       BlockType		      TransferFcn
       Name		      "Transfer Fcn"
       SID		      3
@@ -983,16 +964,8 @@ Model {
     Line {
       SrcBlock		      "Sum"
       SrcPort		      1
-      Points		      [10, 0]
-      Branch {
-	DstBlock		"PID Controller"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -65]
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
+      DstBlock		      "PID Controller"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "PID Controller"

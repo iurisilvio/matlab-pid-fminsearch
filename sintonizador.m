@@ -3,17 +3,17 @@ close all
 warning off
 
 global ref P I D % Variaveis compartilhadas com a simulação
-global ts_spec overshoot_spec step max_ts custo % Variaveis compartilhadas com o callback
+global ts_spec overshoot_spec step t_max custo % Variaveis compartilhadas com o callback
 
-step = 0.001; % Passo da simulação
-max_ts = 4; % Tempo de simulação
-ref = 3; % Referencia
-ts_spec = 1.2; % Tempo de subida especificado
-overshoot_spec = .2; % Overshoot especificado
+step = 0.1; % Passo da simulação
+t_max = 10; % Tempo de simulação
+ref = 1; % Referencia
+ts_spec = 1; % Tempo de subida especificado
+overshoot_spec = .1; % Overshoot especificado
 
-K = [1.5 1 1]; % [P I D] inicial
+K = [1.76 1 1]; % [P I D] inicial
 
-custo = @custo4; % Escolhe a função para cálculo do custo
+custo = @(ts, overshoot) abs(overshoot-overshoot_spec)+abs(ts-ts_spec);
 
-options = optimset('PlotFcns', @optimplotfval, 'MaxFunEvals', 100, 'Display', 'iter');
+options = optimset('PlotFcns', @optimplotfval);
 [Kmin, fval] = fminsearch('fminsearch_callback', K, options)
