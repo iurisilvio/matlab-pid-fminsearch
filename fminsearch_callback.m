@@ -2,7 +2,6 @@ function [fval] = fminsearch_callback(x)
     global P I D ref % Variaveis compartilhadas com a simulação
     global step t_max custo % Variaveis compartilhadas com o callback
 
-    % Valores padrão para ts e overshoot
     P = x(1);
     I = x(2);
     D = x(3);
